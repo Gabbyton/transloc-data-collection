@@ -17,9 +17,12 @@ var options = {
 };
 
 setInterval(() => {
+    console.log(`[TIMESTAMP]: ${new Date().toUTCString()}`);
+}, 300000);
+
+setInterval(() => {
     axios.request(options).then(function (response) {
         const timestamp = response.data.generated_on;
-        console.log(`timestamp: ${timestamp}`);
         const vehicles = response.data["data"]["1199"];
         for (const vehicle of vehicles) {
             mongo.addData({
@@ -34,7 +37,7 @@ setInterval(() => {
             });
         }
     }).catch(function (error) {
-        console.log('[ERROR]:\t\tcould not connect to transloc API.');
+        console.log(`${new Date().toUTCString()} - [ERROR]:\t\tcould not connect to transloc API.`);
         console.log(error);
     });
-}, 100);
+}, 200);

@@ -6,10 +6,10 @@ module.exports.addData = (data) => {
     // Use connect method to connect to the Server
     MongoClient.connect(url, function (err, client) {
         if (err) {
-            console.log('[ERROR]:\t\tcannot connect to mongoDB database.');
+            console.log(`${new Date().toUTCString()} - [ERROR]:\t\tcannot connect to mongoDB database.`);
         }
-        const db = client.db("test");
-        db.collection('inventory').insertOne(data)
+        const db = client.db("transloc_data");
+        db.collection('test').insertOne(data)
             .then(function (result) {
                 // console.log('[SUCCESS]:\t\tadded dataset to mongoDB database.');
                 client.close();
