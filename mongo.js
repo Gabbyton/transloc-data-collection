@@ -11,7 +11,7 @@ module.exports.addData = (data) => {
         const db = client.db("test");
         db.collection('inventory').insertOne(data)
             .then(function (result) {
-                console.log('[SUCCESS]:\t\tadded dataset to mongoDB database.');
+                // console.log('[SUCCESS]:\t\tadded dataset to mongoDB database.');
                 client.close();
             })
     });
