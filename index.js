@@ -20,9 +20,7 @@ setInterval(() => {
     axios.request(options).then(function (response) {
         const timestamp = response.data.generated_on;
         console.log(`timestamp: ${timestamp}`);
-        console.log(response.data);
         const vehicles = response.data["data"]["1199"];
-        console.log(`vehicles: ${vehicles}`);
         for (const vehicle of vehicles) {
             mongo.addData({
                 time: timestamp,
@@ -39,4 +37,4 @@ setInterval(() => {
         console.log('[ERROR]:\t\tcould not connect to transloc API.');
         console.log(error);
     });
-}, 500);
+}, 100);
