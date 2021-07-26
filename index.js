@@ -16,9 +16,12 @@ var options = {
     }
 };
 
+const healthLogInterval = 300000;
+const positionResolution = 500;
+
 setInterval(() => {
     console.log(`[TIMESTAMP]: ${new Date().toUTCString()}`);
-}, 300000);
+}, healthLogInterval);
 
 setInterval(() => {
     axios.request(options).then(function (response) {
@@ -37,7 +40,7 @@ setInterval(() => {
             });
         }
     }).catch(function (error) {
-        console.log(`${new Date().toUTCString()} - [ERROR]:\t\tcould not connect to transloc API.`);
+        console.log(`${new Date().toUTCString()} - [ERROR]:\t\ttrouble accessing transloc API.`);
         console.log(error);
     });
-}, 200);
+}, positionResolution);

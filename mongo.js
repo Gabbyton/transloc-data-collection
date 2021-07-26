@@ -1,6 +1,10 @@
 const MongoClient = require('mongodb').MongoClient;
+
+const dbName = 'transloc_data';
+const tableName = 'data_collection_1_1';
+
 // Connection URL
-const url = 'mongodb://127.0.0.1:27017/transloc_data';
+const url = `mongodb://127.0.0.1:27017/${dbName}`;
 
 module.exports.addData = (data) => {
     // Use connect method to connect to the Server
@@ -8,8 +12,8 @@ module.exports.addData = (data) => {
         if (err) {
             console.log(`${new Date().toUTCString()} - [ERROR]:\t\tcannot connect to mongoDB database.`);
         }
-        const db = client.db("transloc_data");
-        db.collection('test').insertOne(data)
+        const db = client.db(dbName);
+        db.collection(tableName).insertOne(data)
             .then(function (result) {
                 // console.log('[SUCCESS]:\t\tadded dataset to mongoDB database.');
                 client.close();
